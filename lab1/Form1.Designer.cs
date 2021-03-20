@@ -159,7 +159,7 @@
             this.Controls.Add(this.prioritiesAddBox);
             this.Controls.Add(this.addNamesBox);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "AHP";
             this.addNamesBox.ResumeLayout(false);
             this.addNamesBox.PerformLayout();
             this.prioritiesAddBox.ResumeLayout(false);

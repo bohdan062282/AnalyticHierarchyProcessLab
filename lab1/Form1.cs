@@ -15,10 +15,14 @@ namespace lab1
         public Form1()
         {
             InitializeComponent();
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
+            MinimizeBox = false;
+            StartPosition = FormStartPosition.CenterScreen;
             criterionPool = new List<string> { };
             pairIndexesMajor = new List<int[]> { };
             pairIndexesMinor = new List<int[]> { };
-            AHPs = new List<AHP> { };
+            AHPs = new List<Form1> { };
             index = 0;
             level = 0;
         }
@@ -37,18 +41,28 @@ namespace lab1
         {
             if(level == 0)
             {
+                if(criterionPool.Count < 3)
+                {
+                    MessageBox.Show("Three or more criteria are required.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 addNamesBox.Text = "Add categories";
                 level++;
-                g_AHP = new AHP(criterionPool.ToArray());
+                g_AHP = new Form1(criterionPool.ToArray());
                 criterionPool.Clear();
                 return;
             }
             level = -1;
+            if (criterionPool.Count < 2)
+            {
+                MessageBox.Show("Two or more categories are required.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             string []criterionNames = criterionPool.ToArray();
             for(int i = 0; i < g_AHP.Amount; i++)
             {
-                AHPs.Add(new AHP(criterionNames));
+                AHPs.Add(new Form1(criterionNames));
             }
 
             addNamesBox.Enabled = false;
@@ -78,7 +92,7 @@ namespace lab1
                 applyRatio(AHPs.ElementAt(level), pairIndexesMinor);
             }
         }
-        private void applyRatio(AHP aHP, List<int[]> pairIndexes)
+        private void applyRatio(Form1 aHP, List<int[]> pairIndexes)
         {
             if (valuesComboBox.SelectedIndex != -1)
             {
@@ -135,7 +149,7 @@ namespace lab1
         }
         public void showResultDialogBox()
         {
-            ResultDialog resultDialog = new ResultDialog(AHP.getPriorityValues(g_AHP, AHPs));
+            ResultDialog resultDialog = new ResultDialog(Form1.getPriorityValues(g_AHP, AHPs));
 
             if (resultDialog.ShowDialog(this) == DialogResult.OK)
             {
@@ -150,8 +164,8 @@ namespace lab1
         }
 
         List<string> criterionPool;
-        AHP g_AHP;
-        List<AHP> AHPs;
+        Form1 g_AHP;
+        List<Form1> AHPs;
         List<int[]> pairIndexesMajor;
         List<int[]> pairIndexesMinor;
         int index;

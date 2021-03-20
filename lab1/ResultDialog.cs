@@ -16,7 +16,12 @@ namespace lab1
         {
             InitializeComponent();
 
-            this.resultText.Text = resut;
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
+            MinimizeBox = false;
+            StartPosition = FormStartPosition.CenterScreen;
+
+            resultText.Text = resut;
         }
     }
 }

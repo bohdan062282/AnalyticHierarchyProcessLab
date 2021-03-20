@@ -46,7 +46,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(304, 61);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(304, 201);
             this.Controls.Add(this.resultText);
             this.Name = "ResultDialog";
             this.Text = "ResultDialog";

@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace lab1
 {
-    class AHP
+    partial class Form1
     {
-        public static string getPriorityValues(AHP criterionsLvl2, List<AHP> criterionsLvl3)
+        public static string getPriorityValues(Form1 criterionsLvl2, List<Form1> criterionsLvl3)
         {
             StringBuilder stringBuilder = new StringBuilder();
-            AHP firstEl = criterionsLvl3.ElementAt(0);
+            Form1 firstEl = criterionsLvl3.ElementAt(0);
             for (int i = 0; i < firstEl.Amount; i++)
             {
                 stringBuilder.Append(firstEl.Names[i] + " = ");
@@ -25,7 +25,7 @@ namespace lab1
             return stringBuilder.ToString();
         }
 
-        public AHP(string []names)
+        public Form1(string []names)
         {
             Names = names;
             Amount = Names.Length;
